@@ -1,32 +1,48 @@
-let dot;
+let x;
+let y;
+let r=30;
+let k =7.2;
+let mv =1;
+let kx = -300;
+let t = 0;
 
 
 function setup() {
-  createCanvas(800,600);
+  createCanvas(600,600);
+  background(40,90,100);
   colorMode(HSB);
+  stroke(255);
+  translate(width/2, height/2);
+ 
+  angleMode(DEGREES);
 
-  dot = new Dot(100,350,50);
+  
 
 }
 
 function draw() {
-  //background(0,0,100);
+  
+  translate(width/2, height/2);
+  h();
+ e();
 
-  dot.update();
-
-}
-
-class Dot {
-  constructor(x, y, diameter) {
-    this.x = x;
-    this.y = y;
-    this.diameter = diameter;
-    this.hue = random(360);
-  }
-
-  update() {
-    fill(this.hue, 50, 100);
-    ellipse(this.x, this.y, this.diameter, this.diameter);
-  }
 
 }
+
+
+function h(){
+  fill(20,50,100);
+  x = r * (k+1) * cos(t) +r * cos((k-1)*t);
+  y = r * (k+1) * sin(t) -r * sin((k-1)*t);
+  circle(x,y,5);
+  
+  t +=mv;
+}
+
+function e(){
+  x = 15 * (6.5+1) * cos(t) - 15 * cos((6.5+1)*t);
+  y = 15 * (6.5+1) * sin(t) - 15 * sin((6.5+1)*t);
+  circle(x,y,5);
+  t +=mv;
+}
+
