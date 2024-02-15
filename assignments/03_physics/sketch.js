@@ -2,8 +2,8 @@ let shape;
 let gravity;
 let resistance;
 let speed;
-let waterRipple;
-let waveFrequency;
+let waterR;
+let waveF;
 let waveA;
 let waveSpeed;
 
