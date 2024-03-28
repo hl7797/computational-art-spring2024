@@ -1,6 +1,6 @@
 
 let vehicles = [];
-let numVehicles = 20;
+let numVehicles = 10;
 let target;
 let foods = []; 
 
