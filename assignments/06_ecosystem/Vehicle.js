@@ -8,7 +8,7 @@ class Vehicle {
         this.maxSpeed = 5;
         this.maxForce = 0.05;
 
-        this.dim = 0 + random(5);
+        this.dim = 2 + random(5);
 
         this.hue = random(100, 200);
         this.saturation = 70;
@@ -51,31 +51,33 @@ class Vehicle {
     }
 
     update() {
-        let closestFood = this.getClosestFood();
-        if (closestFood) {
-            this.seek(closestFood.pos);
-            let d = p5.Vector.dist(this.pos, closestFood.pos);
-            if (d < this.dim + closestFood.size / 2) {
-                foods.splice(foods.indexOf(closestFood), 1);
+        let closeFood = this.getCloseFood();
+        if (closeFood) {
+            this.seek(closeFood.pos); 
+            let d = p5.Vector.dist(this.pos, closeFood.pos);
+            if (d < this.dim / 2 + closeFood.size / 2) {
+                foods.splice(foods.indexOf(closeFood), 1);
+                vehicles.push(new Vehicle(random(width), random(height), this.target));
             }
-        }
+        } 
+        
         this.vel.add(this.acc);
         this.vel.limit(this.maxSpeed);
         this.pos.add(this.vel);
         this.acc.set(0, 0);
     }
 
-    getClosestFood() {
-        let closestFood = null;
-        let closestDist = 100;
+    getCloseFood() {
+        let closeFood = null;
+        let closeDist = 500;
         for (let food of foods) {
             let dist = p5.Vector.dist(this.pos, food.pos);
-            if (dist < closestDist) {
-                closestDist = dist;
-                closestFood = food;
+            if (dist < closeDist) {
+                closeDist = dist;
+                closeFood = food;
             }
         }
-        return closestFood;
+        return closeFood;
     }
 
     show() {

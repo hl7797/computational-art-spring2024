@@ -1,6 +1,6 @@
 
 let vehicles = [];
-let numVehicles = 50;
+let numVehicles = 20;
 let target;
 let foods = []; 
 
@@ -18,6 +18,9 @@ function setup() {
 
 function draw() {
   background(0,0, 100);
+  textSize(12);
+  textAlign(CENTER,CENTER);
+  text("Click mouse put foods\n Num of vehicle will group up", width/2, height/2);
 
   target.x = mouseX; 
   target.y = mouseY;
@@ -44,7 +47,7 @@ class Food {
   constructor(x, y) {
     this.pos = createVector(x, y);
     this.size = 5;
-    this.color = color(255, 0, 0);
+    this.color = color(0,255,255);
   }
   
   show() {
