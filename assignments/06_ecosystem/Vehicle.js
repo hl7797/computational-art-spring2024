@@ -19,7 +19,7 @@ class Vehicle {
         this.mass = 1;
 
         background(0, 0, 100);
-       
+        
     }
 
     addForce(force) {
