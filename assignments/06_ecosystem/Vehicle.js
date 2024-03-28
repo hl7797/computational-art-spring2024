@@ -53,10 +53,9 @@ class Vehicle {
     update() {
         let closestFood = this.getClosestFood();
         if (closestFood) {
-            this.seek(closestFood.pos); // 朝最近的食物位置移动
+            this.seek(closestFood.pos);
             let d = p5.Vector.dist(this.pos, closestFood.pos);
             if (d < this.dim + closestFood.size / 2) {
-                // 如果车辆与食物发生碰撞，吃掉食物并将其从数组中移除
                 foods.splice(foods.indexOf(closestFood), 1);
             }
         }
@@ -68,7 +67,7 @@ class Vehicle {
 
     getClosestFood() {
         let closestFood = null;
-        let closestDist = Infinity;
+        let closestDist = 100;
         for (let food of foods) {
             let dist = p5.Vector.dist(this.pos, food.pos);
             if (dist < closestDist) {

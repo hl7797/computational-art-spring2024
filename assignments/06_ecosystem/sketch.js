@@ -2,7 +2,7 @@
 let vehicles = [];
 let numVehicles = 30;
 let target;
-let foods = []; // 存储食物
+let foods = []; 
 
 function setup() {
   createCanvas(600, 600);
@@ -24,7 +24,7 @@ function draw() {
 
   ellipse(target.x, target.y, 10, 10);
 
-  // 绘制食物
+
   for (let food of foods) {
     food.show();
   }
@@ -37,7 +37,6 @@ function draw() {
 }
 
 function mousePressed() {
-  // 在点击鼠标时生成食物
   foods.push(new Food(mouseX, mouseY));
 }
 
