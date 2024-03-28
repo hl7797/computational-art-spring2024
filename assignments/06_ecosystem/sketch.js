@@ -22,7 +22,7 @@ function draw() {
   textSize(12);
   textAlign(CENTER,CENTER);
   text("Click mouse put foods\n Num of vehicle will group up", width/2, height/2);
-  textAlign(LEFT, TOP); // 设置文本对齐方式
+  textAlign(LEFT, TOP); 
   text("Vehicles: " + vehicles.length, 10,10);
   target.x = mouseX; 
   target.y = mouseY;
