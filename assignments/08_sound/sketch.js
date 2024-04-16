@@ -1,7 +1,7 @@
 let kickSample;
 
 function preload() {
-  kickSample = loadSound("https://hl7797.github.io/computational-art-spring2024/assignments/08_sound/samples/111.wav");
+  kickSample = loadSound("https://hl7797.github.io/computational-art-spring2024/assignments/08_sound/samples/piano.wav");
 }
 
 function setup() {
@@ -18,5 +18,6 @@ function draw() {
 
 
 function mousePressed() {
-  userStartAudio();
+  //userStartAudio();
+  kickSample.play();
 }
