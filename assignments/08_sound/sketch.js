@@ -38,7 +38,7 @@ function draw() {
 
 function mouseClicked() {
   balls.push(new Ball(random(width), random(height), random(10, 30), random(-5, 5), random(-5, 5)));
-  let noteOffset = sixteenth + floor(random(-2, 2));
+  let noteOffset = sixteenth + floor(random(-5, 5));
    let scaleIndex = noteOffset % scales[scale].length;
    let note = midiToFreq(root + scales[scale][scaleIndex]);
   synth.play(note, 0.5, 0, 0.2); 
