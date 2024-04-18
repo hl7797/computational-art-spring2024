@@ -11,7 +11,7 @@ function preload() {
 
 function setup() {
   createCanvas(400, 400);
-  osc = new p5.Oscillator('sawStooth');
+  osc = new p5.Oscillator('sawtooth');
   synth = new p5.PolySynth();
 
 }
@@ -28,7 +28,7 @@ function draw() {
   for (let i = 0; i < balls.length; i++) {
     for (let j = i + 1; j < balls.length; j++) {
       if (balls[i].collidesWith(balls[j])) {
-        osc.freq(map(balls[i].x, 0, width, 100,200));
+        osc.freq(map(balls[i].x, 0, width, 100,300));
         osc.amp(0.5);
         osc.start(); 
       }
