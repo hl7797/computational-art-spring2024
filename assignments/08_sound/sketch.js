@@ -41,7 +41,7 @@ function mouseClicked() {
   let noteOffset = sixteenth + floor(random(-5, 5));
    let scaleIndex = noteOffset % scales[scale].length;
    let note = midiToFreq(root + scales[scale][scaleIndex]);
-  synth.play(note, 0.5, 0, 0.2); 
+  synth.play(note, 0.8, 0, 0.2); 
   
 }
 
