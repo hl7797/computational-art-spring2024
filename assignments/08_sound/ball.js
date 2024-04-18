@@ -22,14 +22,14 @@ class Ball {
     }
   
     show() {
-      fill(255, 0, 0);
+      fill(100, 0,0);
       ellipse(this.x, this.y, this.radius * 2);
     }
   
 
-    collidesWith(other) {
-      let distance = dist(this.x, this.y, other.x, other.y);
-      return distance < this.radius + other.radius;
+    collidesWith(ball) {
+      let distance = dist(this.x, this.y, ball.x, ball.y);
+      return distance < this.radius + ball.radius;
     }
    
   }

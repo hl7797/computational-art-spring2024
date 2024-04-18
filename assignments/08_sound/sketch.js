@@ -28,7 +28,7 @@ function draw() {
   for (let i = 0; i < balls.length; i++) {
     for (let j = i + 1; j < balls.length; j++) {
       if (balls[i].collidesWith(balls[j])) {
-        osc.freq(map(balls[i].x, 0, width, 100, 500));
+        osc.freq(map(balls[i].x, 0, width, 100,200));
         osc.amp(0.5);
         osc.start(); 
       }
