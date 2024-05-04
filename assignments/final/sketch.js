@@ -103,7 +103,7 @@ function draw() {
   if (handClosed) {
     // 手部握拳时，限制雨滴在手部区域内
     for (let i = 0; i < rains.length; i++) {
-      rains[i].constrainToHand();
+      rains[i].pause();
     }
   } else {
     // 手部放开时，恢复雨滴的自由下落
