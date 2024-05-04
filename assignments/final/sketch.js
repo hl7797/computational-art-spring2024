@@ -48,7 +48,7 @@ function setup() {
   }
 
   video = createCapture(VIDEO);
-  video.size(320,240);
+  //video.size(0,0);
   video.hide();
   handpose = ml5.handpose(video, modelLoaded);
   handpose.on('predict', gotPredictions);
@@ -97,7 +97,7 @@ function draw() {
 	  }
   }
 
-  image(video, 0, 0, 320, 240);
+  image(video, 0, 0, 20, 20);
   drawKeypoints();
 }
 
