@@ -99,7 +99,7 @@ function draw() {
 
   image(video, 0, 0, 20, 20);
   drawKeypoints();
-  
+
   detectHandClosed(predictions);
   if (handClosed) {
     // 手部握拳时，限制雨滴在手部区域内
@@ -109,12 +109,13 @@ function draw() {
   } else {
     // 手部放开时，恢复雨滴的自由下落
     for (let i = 0; i < rains.length; i++) {
-      rains[i].fall();
+      rains[i].resume();
     }
   }
   
   // 绘制雨滴
   for (let i = 0; i < rains.length; i++) {
+    rains[i].fall();
     rains[i].display();
   }
 }

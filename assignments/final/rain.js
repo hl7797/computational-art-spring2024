@@ -29,4 +29,8 @@ class Rain {
     pause() {
       this.paused = true;
     }
+    resume() {
+      this.paused = false;
+    }
+    
   }
