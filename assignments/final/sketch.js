@@ -21,7 +21,7 @@ let root = 80;
 let video;
 let handpose;
 let predictions = [];
-
+let handClosed = false;
 
 function preload() {
   sound = loadSound("piano.wav"); 
@@ -99,6 +99,43 @@ function draw() {
 
   image(video, 0, 0, 20, 20);
   drawKeypoints();
+
+  if (handClosed) {
+    // 手部握拳时，限制雨滴在手部区域内
+    for (let i = 0; i < rains.length; i++) {
+      rains[i].constrainToHand();
+    }
+  } else {
+    // 手部放开时，恢复雨滴的自由下落
+    for (let i = 0; i < rains.length; i++) {
+      rains[i].fall();
+    }
+  }
+  
+  // 绘制雨滴
+  for (let i = 0; i < rains.length; i++) {
+    rains[i].display();
+  }
+}
+
+function detectHandClosed(predictions) {
+  for (let i = 0; i < predictions.length; i++) {
+    let prediction = predictions[i];
+    if (prediction.handInViewConfidence > 0.5) {
+      // 如果手部置信度高于阈值，检测手部是否握拳
+      let landmarks = prediction.landmarks;
+      let tip = landmarks[8]; // 手指尖部分的关键点
+      let base = landmarks[0]; // 手部基础部分的关键点
+      let distance = dist(tip[0], tip[1], base[0], base[1]); // 计算手指尖到手部基础部分的距离
+      if (distance < 50) {
+        // 如果手指尖到手部基础部分的距离小于阈值，认为手部握拳
+        handClosed = true;
+        return;
+      }
+    }
+  }
+  // 如果没有检测到握拳手势，手部放开
+  handClosed = false;
 }
 
 function drawKeypoints() {
