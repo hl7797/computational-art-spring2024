@@ -99,7 +99,8 @@ function draw() {
 
   image(video, 0, 0, 20, 20);
   drawKeypoints();
-
+  
+  detectHandClosed(predictions);
   if (handClosed) {
     // 手部握拳时，限制雨滴在手部区域内
     for (let i = 0; i < rains.length; i++) {
