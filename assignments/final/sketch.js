@@ -104,14 +104,12 @@ function draw() {
 function drawKeypoints() {
   for (let i = 0; i < predictions.length; i++) {
     let prediction = predictions[i];
-    for (let j = 0; j < prediction.landmarks.length; j++) {
-      let keypoints = prediction.landmarks;
-      //let [x, y] = keypoints[j];
-      // x= map(x,0,video.width,0,width);
-      // y= map(y,0,video.height,0,height);
+    let keypoints = prediction.landmarks;
+    for (let j = 0; j < keypoints.length; j++) {
+      let [x, y] = keypoints[j];
       fill(255, 0, 0);
       noStroke();
-      ellipse(keypoints[0], keypoints[1], 10, 10);
+      ellipse(x, y, 10, 10);
     }
   }
 }
