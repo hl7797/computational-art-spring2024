@@ -105,7 +105,7 @@ function draw() {
 	  }
   }
 
-  image(video, 0, 0, 20, 20);
+  image(video, 500, 0, 100, 80);
   //drawKeypoints();
 
   detectHandClosed(predictions);
