@@ -24,4 +24,9 @@ class Rain {
       image(drop_image, this.x, this.y, 15, 15);
       
     }
+    constrainToHand() {
+      // 限制雨滴在手部区域内
+      this.x = mouseX + random(-20, 20);
+      this.y = mouseY + random(-20, 20);
+    }
   }
