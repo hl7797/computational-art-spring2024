@@ -5,7 +5,6 @@ class Rain {
       this.y = random(-500, -50); // 在屏幕之上的随机y位置
       this.z = random(0, 20); // 随机z位置
       this.yspeed = map(this.z, 0, 20,0,5); // 雨滴速度随z位置变化
-     
     }
     
     fall() {
@@ -16,12 +15,12 @@ class Rain {
         this.x = random(width);
       
         this.y = random(-200, -100);
-        this.yspeed = map(this.z, 0, 20, 0, 5); // 重新计算雨滴速度，确保速度范围适合
+        this.yspeed = map(this.z, 0, 20, 0, 5); 
+
       }
     }
     
     display() {
-     
       image(drop_image, this.x, this.y, 15, 15);
       
     }

@@ -3,7 +3,7 @@ let Dots_num = 5; // 黑点的数量
 
 let dots = []; 
 let rains = [];
-//let particles = [];
+
 //create slide
 let slide;
 
@@ -16,6 +16,13 @@ let note = 0;
 let sixteenth = 0;
 let root = 80;
 
+
+//camera
+let video;
+let handpose;
+let predictions = [];
+
+
 function preload() {
   sound = loadSound("piano.wav"); 
   background_image = loadImage('bg01.jpg');
@@ -23,7 +30,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(600, 400); // 
+  createCanvas(600, 400); 
   userStartAudio();
   synth = new p5.PolySynth();
 
@@ -35,12 +42,23 @@ function setup() {
   for (let i = 0; i < Dots_num; i++) {
     dots.push(new Dots());
   }
-
   //初始化雨滴
   for (let i = 0; i < 50; i++) {
     rains.push(new Rain());
   }
+
+  video = createCapture(VIDEO);
+  video.hide();
+  handpose = ml5.handpose(video, modelLoaded);
+  handpose.on('predict', gotPredictions);
 }
+function modelLoaded() {
+  console.log('Handpose model loaded');
+}
+function gotPredictions(results) {
+  predictions = results;
+}
+
 
 function draw() {
   background(background_image);
@@ -55,9 +73,9 @@ function draw() {
   for (let rain of rains) {
     rain.fall();
     rain.display();
-
-	
   }
+
+  
  
 
   // 如果新的点的数量不同于旧的点的数量，更新点数组
@@ -78,11 +96,19 @@ function draw() {
 	  }
   }
 
- 
+  image(video, 0, 0, width, height);
+  drawKeypoints();
 }
 
-function mouseMoved(){
-	
+function drawKeypoints() {
+  for (let i = 0; i < predictions.length; i++) {
+    let keypoints = predictions[i].landmarks;
+    for (let j = 0; j < keypoints.length; j++) {
+      let [x, y] = keypoints[j];
+      fill(255, 0, 0);
+      ellipse(x, y, 10, 10);
+    }
+  }
 }
 function updateDots(nweDots_num) {
 	// 如果新的点的数量大于旧的点的数量，添加新的点
