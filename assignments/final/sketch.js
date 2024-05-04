@@ -71,10 +71,10 @@ function draw() {
   noStroke(); // 不绘制点的边框
   ellipse(mouseXPos, mouseYPos, 7,7); // 在鼠标位置绘制一个半径为5的圆（即点）
  
-  for (let rain of rains) {
-    rain.fall();
-    rain.display();
-  }
+  // for (let rain of rains) {
+  //   rain.fall();
+  //   rain.display();
+  // }
 
   
  
@@ -98,7 +98,7 @@ function draw() {
   }
 
   image(video, 0, 0, 20, 20);
-  drawKeypoints();
+  //drawKeypoints();
 
   detectHandClosed(predictions);
   if (handClosed) {
@@ -129,7 +129,7 @@ function detectHandClosed(predictions) {
       let tip = landmarks[8]; // 手指尖部分的关键点
       let base = landmarks[0]; // 手部基础部分的关键点
       let distance = dist(tip[0], tip[1], base[0], base[1]); // 计算手指尖到手部基础部分的距离
-      if (distance < 50) {
+      if (distance < 150) {
         // 如果手指尖到手部基础部分的距离小于阈值，认为手部握拳
         handClosed = true;
         return;
@@ -157,7 +157,6 @@ function updateDots(nweDots_num) {
 	while (dots.length < nweDots_num) {
 	  dots.push(new Dots());
 	}
-  
 	// 如果新的点的数量小于旧的点的数量，删除多余的点
 	while (dots.length > nweDots_num) {
 	  dots.pop();

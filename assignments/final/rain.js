@@ -11,15 +11,15 @@ class Rain {
     fall() {
       if (!this.paused) {
       this.y += this.yspeed; // 雨滴下落
-      }
+      
       // 当雨滴落出屏幕时重新设置位置
       if (this.y > height || (this.y > height / 2 && random(1) < 0.01)) {
         this.x = random(width);
-      
         this.y = random(-200, -100);
         this.yspeed = map(this.z, 0, 20, 0, 5); 
 
       }
+    }
     }
     
     display() {
