@@ -22,7 +22,8 @@ let video;
 let handpose;
 let predictions = [];
 let handClosed = false;
-
+let toggleButton; 
+let showKeypoints = true;
 function preload() {
   sound = loadSound("piano.wav"); 
   background_image = loadImage('bg01.jpg');
@@ -52,7 +53,12 @@ function setup() {
   video.hide();
   handpose = ml5.handpose(video, modelLoaded);
   handpose.on('predict', gotPredictions);
+
+  toggleButton = createButton('Toggle Keypoints');
+  toggleButton.position(20, 20);
+  toggleButton.mousePressed(drawKeypoints);
 }
+
 function modelLoaded() {
   console.log('Handpose model loaded');
 }
@@ -63,7 +69,9 @@ function gotPredictions(results) {
 
 function draw() {
   background(background_image);
-
+  if (showKeypoints) {
+    drawKeypoints(predictions);
+  }
   mouseXPos = mouseX;
   mouseYPos = mouseY;
 
