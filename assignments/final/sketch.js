@@ -55,8 +55,8 @@ function setup() {
   handpose.on('predict', gotPredictions);
 
   toggleButton = createButton('Toggle Keypoints');
-  toggleButton.position(20, 20);
-  toggleButton.mousePressed(drawKeypoints);
+  toggleButton.position(20, 40);
+  toggleButton.mousePressed(toggleKeypoints);
 }
 
 function modelLoaded() {
@@ -159,6 +159,9 @@ function drawKeypoints() {
       ellipse(x, y, 10, 10);
     }
   }
+}
+function toggleKeypoints() {
+  showKeypoints = !showKeypoints;
 }
 function updateDots(nweDots_num) {
 	// 如果新的点的数量大于旧的点的数量，添加新的点
