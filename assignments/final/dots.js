@@ -32,7 +32,7 @@ class Dots {
             let interColor = lerpColor(color(0), color(255), map(distance, 0, 120, 0, 1));
             stroke(interColor);
           line(this.x, this.y, mouseXPos, mouseYPos);
-         this.playSoundOnce() ;
+         this.playSound() ;
         }else{
             this.soundPlayed = false ;
         }
@@ -57,7 +57,7 @@ class Dots {
         }
       }
 
-       playSoundOnce() {
+       playSound() {
         if (!this.soundPlayed) {
             let noteOffset = sixteenth + floor(random(-5, 5));
             let scaleIndex = noteOffset % scales[scale].length;
