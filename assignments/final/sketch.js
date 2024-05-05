@@ -1,5 +1,5 @@
-let mouseXPos, mouseYPos; // 鼠标点的位置
-let Dots_num = 5; // 黑点的数量
+let mouseXPos, mouseYPos; 
+let Dots_num = 5; 
 
 let dots = []; 
 let rains = [];
@@ -22,6 +22,8 @@ let video;
 let handpose;
 let hands = [];
 let handClosed = false;
+
+//Create button
 let swtich; 
 let showKeypoints = true;
 
@@ -35,12 +37,6 @@ function setup() {
   createCanvas(600, 400); 
   userStartAudio();
   synth = new p5.PolySynth();
-
- 
-  slide = createSlider(5, 15, Dots_num);
-  slide.position(20, 20);
-  slide.style('width', '100px');
-  
   for (let i = 0; i < Dots_num; i++) {
     dots.push(new Dots());
   }
@@ -48,15 +44,20 @@ function setup() {
   for (let i = 0; i < 50; i++) {
     rains.push(new Rain());
   }
+ //Slider
+  slide = createSlider(5, 15, Dots_num);
+  slide.position(20, 20);
+  slide.style('width', '100px');
+//Button
+swtich = createButton('Show Keypoints');
+swtich.position(20, 40);
+swtich.mousePressed(SwitchKeyPoints);
 
+  //Cams
   video = createCapture(VIDEO);
   video.hide();
   handpose = ml5.handpose(video, modelLoaded);
   handpose.on('predict', gotHands);
-
-  swtich = createButton('Show Keypoints');
-  swtich.position(20, 40);
-  swtich.mousePressed(SwitchKeyPoints);
 }
 
 function modelLoaded() {
@@ -74,13 +75,13 @@ function draw() {
   fill(0); 
   noStroke();
   ellipse(mouseXPos, mouseYPos, 7,7); 
- 
+ // Update dots num
   let nweDots_num = slide.value();
   if (nweDots_num !== Dots_num) {
     updateDots(nweDots_num);
     Dots_num = nweDots_num;
   }
-  
+  //draw Dots
   for (let i = 0; i < Dots_num; i++) {
     dots[i].update();
     dots[i].display();
@@ -96,7 +97,7 @@ function draw() {
   if (showKeypoints) {
     drawKeypoints(hands);
   }
-
+//detect hands closed
   HandClosed(hands);
   if (handClosed) {  
     for (let i = 0; i < rains.length; i++) {
@@ -108,13 +109,13 @@ function draw() {
     }
   }
   
-  // 绘制雨滴
+  
   for (let i = 0; i < rains.length; i++) {
     rains[i].fall();
     rains[i].display();
   }
 }
-
+//detect hands closed
 function HandClosed(hands) {
   for (let i = 0; i < hands.length; i++) {
     let hand = hands[i];
@@ -129,10 +130,11 @@ function HandClosed(hands) {
       }
     }
   }
-  // 如果没有检测到握拳手势，手部放开
   handClosed = false;
 }
 
+
+// show keypoints
 function drawKeypoints() {
   for (let i = 0; i < hands.length; i++) {
     let hand = hands[i];
@@ -145,9 +147,11 @@ function drawKeypoints() {
     }
   }
 }
+
 function SwitchKeyPoints() {
   showKeypoints = !showKeypoints;
 }
+
 function updateDots(nweDots_num) {
 	while (dots.length < nweDots_num) {
 	  dots.push(new Dots());
