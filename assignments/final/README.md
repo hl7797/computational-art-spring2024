@@ -22,4 +22,5 @@ hl7797.github.io/computational-art-spring2024/assignments/final
 
 3. Web cams: Get hand movements to control raindrops.
 
+4. Handpose: Usw handpose function to get hands key points.
 ## Allowed to publicly share
