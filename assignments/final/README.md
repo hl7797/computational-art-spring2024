@@ -15,6 +15,10 @@ hl7797.github.io/computational-art-spring2024/assignments/final
 
 6. Get hand movements from the camera. Raindrops pause when you make a fist. Releasing the hands will resume.
 
+7. The ship will move follow the mouse pos.
+
+8. When mouse close to other dots, dots will move towards to mouse.
+
 ## Multimedia
 1. Image: The image of background ,and raindorps.
 

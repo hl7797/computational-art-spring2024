@@ -3,13 +3,14 @@ let Dots_num = 5;
 
 let dots = []; 
 let rains = [];
-
+let ship;
 //create slide
 let slide;
 
 //upload image
 let background_image;
 let drop_image;
+let ship_image;
 //Sound
 let scale = 'major';
 let note = 0;
@@ -31,11 +32,13 @@ function preload() {
   sound = loadSound("piano.wav"); 
   background_image = loadImage('bg01.jpg');
   drop_image= loadImage('drop.png');
+  ship_image= loadImage('ship.png');
 }
 
 function setup() {
   createCanvas(600, 400); 
   userStartAudio();
+  ship = new Ship(width / 2 - 50, height - 100, 100, 100);
   synth = new p5.PolySynth();
   for (let i = 0; i < Dots_num; i++) {
     dots.push(new Dots());
@@ -70,10 +73,15 @@ function gotHands(results) {
 
 function draw() {
   background(background_image);
+  //ship control
+  ship.draw();
+  ship.update();
+  // draw dot on mouse
   mouseXPos = mouseX;
   mouseYPos = mouseY;
   fill(0); 
   noStroke();
+  fill(0);
   ellipse(mouseXPos, mouseYPos, 7,7); 
  // Update dots num
   let nweDots_num = slide.value();
