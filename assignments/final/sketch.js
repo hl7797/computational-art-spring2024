@@ -74,6 +74,10 @@ function gotHands(results) {
 function draw() {
   background(background_image);
   //ship control
+  textSize(12);
+  textAlign(CENTER, CENTER);
+  let textContent = "Make a fist or move your mouse";
+  text(textContent, width/2, 30);
   ship.draw();
   ship.update();
   // draw dot on mouse

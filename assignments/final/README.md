@@ -1,4 +1,4 @@
-# Music 
+# Music in landscape painting
 ## Link
 hl7797.github.io/computational-art-spring2024/assignments/final
 
@@ -18,6 +18,8 @@ hl7797.github.io/computational-art-spring2024/assignments/final
 7. The ship will move follow the mouse pos.
 
 8. When mouse close to other dots, dots will move towards to mouse.
+
+9. Manage num od dots by slider.
 
 ## Multimedia
 1. Image: The image of background ,and raindorps.
